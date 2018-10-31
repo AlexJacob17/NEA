@@ -1,5 +1,5 @@
 import sqlite3
-from CreateDatabase import load_database, validate_values
+from CreateDatabase import load_database
 
 class SetDatabase:
     """
@@ -15,7 +15,7 @@ It is import that the data type of values is tuple.
         load_database()
     
     def setUsers(self, values):
-        # 0 = Email, 1 = HashedPassword, 2 = AccountFunds
+        # 0 = Email, 1 = HashedPassword, 2 = AccountFunds 
         if validate_values(values, 3):
             with sqlite3.connect("NEA.db") as db:
                 cursor = db.cursor()
@@ -47,17 +47,13 @@ It is import that the data type of values is tuple.
                 db.commit()
 
 
-def test():
-    setter = SetDatabase()
-    setter.setAdvertisements((2, 3, "a", 54, 105, "b", "a,b", 255, 6, "a"))
-    with sqlite3.connect("NEA.db")as db:
-            cursor = db.cursor()
-            sql = """Select * From Advertisements;"""
-            cursor.execute(sql)
-            result = cursor.fetchall()
-            for each in result:
-                print(each)
+def validate_values(atuple, length):
+    if len(atuple) == length:
+        return True
+    else:
+        print("Error: Incorrect number if items in tuple")
+    return False
 
-test()
+
 
                 
