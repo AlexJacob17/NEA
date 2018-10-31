@@ -42,7 +42,4 @@ def load_database():
     """
         cursor.execute(sql_advertisements)
 
-def validate_values(atuple, length):
-    if len(atuple) == length:
-        return True
-    return False
+
